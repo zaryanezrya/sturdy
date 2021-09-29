@@ -1,6 +1,6 @@
 import unittest
 
-from sturdy import resolve
+from sturdy.ioc import resolve
 from sturdy.ioc.exceptions import ResolveDependencyException
 
 

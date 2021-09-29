@@ -1,5 +1,5 @@
 from sturdy.ioc import resolve
-from sturdy.ioc.interfaces import ICommand
+from sturdy.interfaces import ICommand
 from sturdy.plugins.interfaces import IPlugin
 
 

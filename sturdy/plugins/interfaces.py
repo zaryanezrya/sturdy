@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from sturdy.ioc.interfaces import ICommand
+from sturdy.interfaces import ICommand
 
 
 class IPlugin(ABC):

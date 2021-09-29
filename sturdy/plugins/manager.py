@@ -1,5 +1,6 @@
 from sturdy.ioc import resolve
-from sturdy.ioc.interfaces import ICommand, IResolveDependencyStrategy
+from sturdy.ioc.interfaces import IResolveDependencyStrategy
+from sturdy.interfaces import ICommand
 
 from .interfaces import IPlugin
 
