@@ -1,6 +1,8 @@
 from typing import Any, Callable
 
-from .interfaces import IDependenciesContainer, IResolveDependencyStrategy, ICommand
+from sturdy.interfaces import ICommand
+
+from .interfaces import IResolveDependencyStrategy, IDependenciesContainer
 from .exceptions import ResolveDependencyException
 
 

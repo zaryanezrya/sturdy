@@ -1,17 +1,11 @@
 from abc import ABC, abstractmethod
-from typing import Any, Callable
+from typing import Callable
+
+from sturdy.interfaces import IStrategy
 
 
-class ICommand(ABC):
-    @abstractmethod
-    def __call__(self) -> None:
-        ...
-
-
-class IResolveDependencyStrategy(ABC):
-    @abstractmethod
-    def __call__(self, *args: Any) -> Any:
-        ...
+class IResolveDependencyStrategy(IStrategy):
+    ...
 
 
 class IDependenciesContainer(ABC):

@@ -1,10 +1,10 @@
 import unittest
 
-from sturdy import resolve
+from sturdy.ioc import resolve
 from sturdy.ioc.exceptions import ResolveDependencyException
 
 
-class TestBase(unittest.TestCase):
+class TestResolve(unittest.TestCase):
     def test_ioc_resolve_missing_key_fail(self):
         self.assertRaises(ResolveDependencyException, resolve, "MISSING_KEY")
 
