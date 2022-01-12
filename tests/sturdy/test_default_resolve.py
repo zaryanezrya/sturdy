@@ -3,7 +3,7 @@ import unittest
 from sturdy import resolve, ResolveDependencyException
 
 
-class TestResolve(unittest.TestCase):
+class TestDefaultResolveAndRegister(unittest.TestCase):
     def test_ioc_resolve_missing_key_fail(self):
         self.assertRaises(ResolveDependencyException, resolve, "MISSING_KEY")
 
@@ -17,3 +17,10 @@ class TestResolve(unittest.TestCase):
     def test_ioc_register_bad_arg_fail(self):
         resolve("IoC.Register", "App.dummy", 1)()
         self.assertRaises(ResolveDependencyException, resolve, "App.dummy")
+
+
+# TODO: ...
+class TestDefaultPluginLoad(unittest.TestCase):
+    def test_normal(self):
+        resolve("Plugin.Load", "tests.mocks.plugins.math_helper")()
+        self.assertEqual(3, resolve("MathHelper.add", 1, 2))
