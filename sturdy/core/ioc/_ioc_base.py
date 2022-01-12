@@ -6,6 +6,7 @@ from sturdy.core.strategy import IStrategy
 from .interfaces import IDependenciesContainer
 from .exceptions import ResolveDependencyException
 
+from sturdy.core.ioc.base.ioc_resolve import IOCBaseResolveResolver
 from sturdy.core.ioc.base.plugin_load import IOCBaseLoadPluginCommandResolver
 
 
@@ -29,15 +30,6 @@ class IOCBaseContainer(IDependenciesContainer):
 
     def __setitem__(self, key: str, strategy: IStrategy):
         self.__store[key] = strategy
-
-
-class IOCBaseResolveResolver(IStrategy):
-    def __init__(self, container: IDependenciesContainer):
-        self.__container = container
-
-    def __call__(self, *args: Any) -> IStrategy:
-        key = args[0]
-        return self.__container[key](*args[1:])
 
 
 class IOCBaseRegisterCommandResolver(IStrategy):
