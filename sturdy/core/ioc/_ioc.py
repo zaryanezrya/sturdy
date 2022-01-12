@@ -1,13 +1,10 @@
 from typing import Any
 
 from .exceptions import ResolveDependencyException
-from ._exception_helper import raise_
 from sturdy.core.ioc.base.container import IOCBaseContainer
 
 
-ioc_base_container = IOCBaseContainer(
-    lambda key: raise_(ResolveDependencyException(f"Dependency {key} is missing"))
-)
+ioc_base_container = IOCBaseContainer()
 
 
 def resolve(key: str, *args) -> Any:
