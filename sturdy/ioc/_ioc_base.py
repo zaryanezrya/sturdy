@@ -55,11 +55,11 @@ class IOCBaseRegisterCommandResolver(IResolveDependencyStrategy):
 class IOCBaseRegisterCommand(ICommand):
     def __init__(
         self,
-        scope: IDependenciesContainer,
+        container: IDependenciesContainer,
         key: str,
         strategy: IResolveDependencyStrategy,
     ):
-        self.container = scope
+        self.container = container
         self.key = key
         self.strategy = strategy
 
