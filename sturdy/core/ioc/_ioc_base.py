@@ -6,6 +6,8 @@ from sturdy.core.strategy import IStrategy
 from .interfaces import IDependenciesContainer
 from .exceptions import ResolveDependencyException
 
+from sturdy.core.ioc.base.plugin_load import IOCBaseLoadPluginCommandResolver
+
 
 class IOCBaseContainer(IDependenciesContainer):
     def __init__(self, not_found_strategy: Callable):
@@ -15,6 +17,7 @@ class IOCBaseContainer(IDependenciesContainer):
         self.__store["IoC.Resolve"] = IOCBaseResolveResolver(self)
         self.__store["IoC.Register"] = IOCBaseRegisterCommandResolver(self)
         self.__store["IoC.BaseContainer"] = lambda: self
+        self.__store["Plugin.Load"] = IOCBaseLoadPluginCommandResolver()
 
     def __getitem__(self, key: str) -> IStrategy:
         try:
