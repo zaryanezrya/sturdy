@@ -1,8 +1,9 @@
 from typing import Any, Callable
 
 from sturdy.command import ICommand
+from sturdy.interfaces import IStrategy
 
-from .interfaces import IResolveDependencyStrategy, IDependenciesContainer
+from .interfaces import IDependenciesContainer
 from .exceptions import ResolveDependencyException
 
 
@@ -15,7 +16,7 @@ class IOCBaseContainer(IDependenciesContainer):
         self.__store["IoC.Register"] = IOCBaseRegisterCommandResolver(self)
         self.__store["IoC.BaseContainer"] = lambda: self
 
-    def __getitem__(self, key: str) -> IResolveDependencyStrategy:
+    def __getitem__(self, key: str) -> IStrategy:
         try:
             return self.__store[key]
         except KeyError:
@@ -23,32 +24,32 @@ class IOCBaseContainer(IDependenciesContainer):
         except ResolveDependencyException as e:
             raise e
 
-    def __setitem__(self, key: str, strategy: IResolveDependencyStrategy):
+    def __setitem__(self, key: str, strategy: IStrategy):
         self.__store[key] = strategy
 
 
-class IOCBaseResolveResolver(IResolveDependencyStrategy):
+class IOCBaseResolveResolver(IStrategy):
     def __init__(self, container: IDependenciesContainer):
         self.__container = container
 
-    def __call__(self, *args: Any) -> IResolveDependencyStrategy:
+    def __call__(self, *args: Any) -> IStrategy:
         key = args[0]
         return self.__container[key](*args[1:])
 
 
-class IOCBaseRegisterCommandResolver(IResolveDependencyStrategy):
+class IOCBaseRegisterCommandResolver(IStrategy):
     def __init__(self, container: IDependenciesContainer):
         self.__container = container
 
-    def __call__(self, *args: Any) -> IResolveDependencyStrategy:
+    def __call__(self, *args: Any) -> IStrategy:
         try:
             key = args[0]
             strategy = args[1]
-            # TODO: Throw ResolveDependencyException "agrs[0] must have type String, args[1] must have IResolveDependencyStrategy"
+            # TODO: Throw ResolveDependencyException "agrs[0] must have type String, args[1] must have IStrategy"
             return IOCBaseRegisterCommand(self.__container, key, strategy)
         except IndexError:
             raise ResolveDependencyException(
-                "IoC.Register requires two args: key(str) and strategy(IResolveDependencyStrategy)"
+                "IoC.Register requires two args: key(str) and strategy(IStrategy)"
             )
 
 
@@ -57,7 +58,7 @@ class IOCBaseRegisterCommand(ICommand):
         self,
         container: IDependenciesContainer,
         key: str,
-        strategy: IResolveDependencyStrategy,
+        strategy: IStrategy,
     ):
         self.container = container
         self.key = key
