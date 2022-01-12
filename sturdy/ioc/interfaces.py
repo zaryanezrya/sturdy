@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Callable
 
-from sturdy.interfaces import IStrategy
+from sturdy.core.strategy import IStrategy
 
 
 class IDependenciesContainer(ABC):

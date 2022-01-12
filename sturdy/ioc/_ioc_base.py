@@ -1,7 +1,7 @@
 from typing import Any, Callable
 
-from sturdy.command import ICommand
-from sturdy.interfaces import IStrategy
+from sturdy.core.command import ICommand
+from sturdy.core.strategy import IStrategy
 
 from .interfaces import IDependenciesContainer
 from .exceptions import ResolveDependencyException
