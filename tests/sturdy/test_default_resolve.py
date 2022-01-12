@@ -1,6 +1,6 @@
 import unittest
 
-from sturdy import resolve, ResolveDependencyException
+from sturdy import resolve, ResolveDependencyException, CommandException
 
 
 class TestDefaultResolveAndRegister(unittest.TestCase):
@@ -19,8 +19,11 @@ class TestDefaultResolveAndRegister(unittest.TestCase):
         self.assertRaises(ResolveDependencyException, resolve, "App.dummy")
 
 
-# TODO: ...
 class TestDefaultPluginLoad(unittest.TestCase):
     def test_normal(self):
         resolve("Plugin.Load", "tests.mocks.plugins.math_helper")()
         self.assertEqual(3, resolve("MathHelper.add", 1, 2))
+
+    def test_module_not_found(self):
+        cmd = resolve("Plugin.Load", "DEFINITELYDOESNTEXIST")
+        self.assertRaises(CommandException, cmd)
