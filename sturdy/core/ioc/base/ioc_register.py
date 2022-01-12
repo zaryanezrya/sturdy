@@ -2,7 +2,7 @@ from typing import Any
 
 from sturdy.core.strategy import IStrategy
 from sturdy.core.command import ICommand
-from sturdy.core.ioc.interfaces import IDependenciesContainer
+from sturdy.core.ioc.container import IDependenciesContainer
 from sturdy.core.ioc.exceptions import ResolveDependencyException
 
 

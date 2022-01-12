@@ -2,7 +2,7 @@ from typing import Callable
 
 from sturdy.core.strategy import IStrategy
 
-from .interfaces import IDependenciesContainer
+from .container import IDependenciesContainer
 from .exceptions import ResolveDependencyException
 
 from sturdy.core.ioc.base.ioc_resolve import IOCBaseResolveResolver
