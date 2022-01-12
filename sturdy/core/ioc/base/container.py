@@ -2,8 +2,8 @@ from typing import Callable
 
 from sturdy.core.strategy import IStrategy
 
-from .container import IDependenciesContainer
-from .exceptions import ResolveDependencyException
+from sturdy.core.ioc.container import IDependenciesContainer
+from sturdy.core.ioc.exceptions import ResolveDependencyException
 
 from sturdy.core.ioc.base.ioc_resolve import IOCBaseResolveResolver
 from sturdy.core.ioc.base.plugin_load import IOCBaseLoadPluginCommandResolver

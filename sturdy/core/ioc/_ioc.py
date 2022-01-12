@@ -2,7 +2,7 @@ from typing import Any
 
 from .exceptions import ResolveDependencyException
 from ._exception_helper import raise_
-from ._ioc_base import IOCBaseContainer
+from sturdy.core.ioc.base.container import IOCBaseContainer
 
 
 ioc_base_container = IOCBaseContainer(
