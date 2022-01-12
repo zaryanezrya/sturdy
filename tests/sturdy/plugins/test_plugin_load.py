@@ -1,6 +1,6 @@
 import unittest
 
-from sturdy.ioc import resolve
+from sturdy import resolve
 
 
 class TestPluginLoadCommand(unittest.TestCase):

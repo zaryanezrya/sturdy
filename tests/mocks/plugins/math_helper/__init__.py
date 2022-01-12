@@ -1,4 +1,4 @@
-from sturdy.ioc import resolve
+from sturdy import resolve
 from sturdy.core.command import ICommand
 
 
