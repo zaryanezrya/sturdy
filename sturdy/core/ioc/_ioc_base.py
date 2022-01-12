@@ -1,6 +1,5 @@
-from typing import Any, Callable
+from typing import Callable
 
-from sturdy.core.command import ICommand
 from sturdy.core.strategy import IStrategy
 
 from .interfaces import IDependenciesContainer
@@ -8,6 +7,7 @@ from .exceptions import ResolveDependencyException
 
 from sturdy.core.ioc.base.ioc_resolve import IOCBaseResolveResolver
 from sturdy.core.ioc.base.plugin_load import IOCBaseLoadPluginCommandResolver
+from sturdy.core.ioc.base.ioc_register import IOCBaseRegisterCommandResolver
 
 
 class IOCBaseContainer(IDependenciesContainer):
@@ -30,34 +30,3 @@ class IOCBaseContainer(IDependenciesContainer):
 
     def __setitem__(self, key: str, strategy: IStrategy):
         self.__store[key] = strategy
-
-
-class IOCBaseRegisterCommandResolver(IStrategy):
-    def __init__(self, container: IDependenciesContainer):
-        self.__container = container
-
-    def __call__(self, *args: Any) -> IStrategy:
-        try:
-            key = args[0]
-            strategy = args[1]
-            # TODO: Throw ResolveDependencyException "agrs[0] must have type String, args[1] must have IStrategy"
-            return IOCBaseRegisterCommand(self.__container, key, strategy)
-        except IndexError:
-            raise ResolveDependencyException(
-                "IoC.Register requires two args: key(str) and strategy(IStrategy)"
-            )
-
-
-class IOCBaseRegisterCommand(ICommand):
-    def __init__(
-        self,
-        container: IDependenciesContainer,
-        key: str,
-        strategy: IStrategy,
-    ):
-        self.container = container
-        self.key = key
-        self.strategy = strategy
-
-    def __call__(self) -> None:
-        self.container[self.key] = self.strategy
