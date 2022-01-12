@@ -1,5 +1,4 @@
-from sturdy import resolve
-from sturdy.core.command import ICommand
+from sturdy import resolve, ICommand
 
 
 class PluginLoadCommand(ICommand):
