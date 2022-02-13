@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import Any
 
 
 class ICommand(ABC):
@@ -8,7 +7,5 @@ class ICommand(ABC):
         ...
 
 
-class IStrategy(ABC):
-    @abstractmethod
-    def __call__(self, *args: Any) -> Any:
-        ...
+class CommandException(Exception):
+    ...
