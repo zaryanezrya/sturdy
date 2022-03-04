@@ -10,11 +10,8 @@ class IOCBaseRegisterCommandResolver(IStrategy):
     def __init__(self, container: IDependenciesContainer):
         self.__container = container
 
-    def __call__(self, *args: Any) -> IStrategy:
+    def __call__(self, key: str, strategy: IStrategy) -> ICommand:
         try:
-            key = args[0]
-            strategy = args[1]
-            # TODO: Throw ResolveDependencyException "agrs[0] must have type String, args[1] must have IStrategy"
             return IOCBaseRegisterCommand(self.__container, key, strategy)
         except IndexError:
             raise ResolveDependencyException(
