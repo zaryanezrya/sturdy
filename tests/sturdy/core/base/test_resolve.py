@@ -1,9 +1,9 @@
 import unittest
 
-from sturdy import resolve, ResolveDependencyException, CommandException
+from sturdy import resolve, ResolveDependencyException
 
 
-class TestDefaultResolveAndRegister(unittest.TestCase):
+class TestBaseResolveAndRegister(unittest.TestCase):
     def test_ioc_resolve_missing_key_fail(self):
         self.assertRaises(ResolveDependencyException, resolve, "MISSING_KEY")
 
@@ -30,13 +30,3 @@ class TestDefaultResolveAndRegister(unittest.TestCase):
         non_callable = 1
         resolve("IoC.Register", "App.dummy", non_callable)()
         self.assertRaises(ResolveDependencyException, resolve, "App.dummy")
-
-
-class TestDefaultPluginLoad(unittest.TestCase):
-    def test_normal(self):
-        resolve("Plugin.Load", "tests.mocks.plugins.math_helper")()
-        self.assertEqual(3, resolve("MathHelper.add", 1, 2))
-
-    def test_module_not_found(self):
-        cmd = resolve("Plugin.Load", "DEFINITELYDOESNTEXIST")
-        self.assertRaises(CommandException, cmd)
