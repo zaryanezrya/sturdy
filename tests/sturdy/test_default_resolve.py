@@ -22,8 +22,13 @@ class TestDefaultResolveAndRegister(unittest.TestCase):
     def test_ioc_register_no_args_fail(self):
         self.assertRaises(ResolveDependencyException, resolve, "IoC.Register")
 
-    def test_ioc_register_bad_arg_fail(self):
-        resolve("IoC.Register", "App.dummy", 1)()
+    def test_ioc_register_none(self):
+        resolve("IoC.Register", "App.dummy", None)()
+        self.assertRaises(ResolveDependencyException, resolve, "App.dummy")
+
+    def test_ioc_register_non_callable(self):
+        non_callable = 1
+        resolve("IoC.Register", "App.dummy", non_callable)()
         self.assertRaises(ResolveDependencyException, resolve, "App.dummy")
 
 
