@@ -1,13 +1,13 @@
 import unittest
 from abc import abstractmethod
-from typing import Any
+from typing import Any, Dict
 
 from sturdy import resolve, IUObject
 
 
 class UObject(IUObject):
     def __init__(self) -> None:
-        self.__store = {}
+        self.__store: Dict = {}
 
     def get_property(self, name: str) -> Any:
         return self.__store[name]
