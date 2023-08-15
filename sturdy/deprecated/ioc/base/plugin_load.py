@@ -2,7 +2,7 @@ import importlib
 from typing import Any
 
 from sturdy.command import ICommand, CommandException
-from sturdy.core.strategy import IStrategy
+from sturdy.deprecated.strategy import IStrategy
 
 
 class IOCBaseLoadPluginCommandResolver(IStrategy):

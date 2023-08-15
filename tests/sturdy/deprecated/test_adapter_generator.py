@@ -3,7 +3,7 @@ from abc import abstractmethod
 from typing import Any, Dict
 
 from sturdy import resolve
-from sturdy.core.iuobject import IUObject
+from sturdy.deprecated.iuobject import IUObject
 
 
 class UObject(IUObject):

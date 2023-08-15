@@ -1,7 +1,7 @@
 from typing import Any
 
 from .exceptions import ResolveDependencyException
-from sturdy.core.ioc.base.container import IOCBaseContainer
+from sturdy.deprecated.ioc.base.container import IOCBaseContainer
 
 
 ioc_base_container = IOCBaseContainer()

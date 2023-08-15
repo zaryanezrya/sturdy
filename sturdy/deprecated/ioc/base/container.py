@@ -1,11 +1,11 @@
-from sturdy.core.strategy import IStrategy
+from sturdy.deprecated.strategy import IStrategy
 
-from sturdy.core.ioc.container import IDependenciesContainer
-from sturdy.core.ioc.exceptions import ResolveDependencyException
+from sturdy.deprecated.ioc.container import IDependenciesContainer
+from sturdy.deprecated.ioc.exceptions import ResolveDependencyException
 
-from sturdy.core.ioc.base.ioc_resolve import IOCBaseResolveResolver
-from sturdy.core.ioc.base.plugin_load import IOCBaseLoadPluginCommandResolver
-from sturdy.core.ioc.base.ioc_register import IOCBaseRegisterCommandResolver
+from sturdy.deprecated.ioc.base.ioc_resolve import IOCBaseResolveResolver
+from sturdy.deprecated.ioc.base.plugin_load import IOCBaseLoadPluginCommandResolver
+from sturdy.deprecated.ioc.base.ioc_register import IOCBaseRegisterCommandResolver
 
 
 class IOCBaseContainer(IDependenciesContainer):

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from sturdy.core.strategy import IStrategy
+from sturdy.deprecated.strategy import IStrategy
 
 
 class IDependenciesContainer(ABC):

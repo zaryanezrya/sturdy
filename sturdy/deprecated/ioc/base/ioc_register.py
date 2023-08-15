@@ -1,9 +1,9 @@
 from typing import Any
 
-from sturdy.core.strategy import IStrategy
+from sturdy.deprecated.strategy import IStrategy
 from sturdy.command import ICommand
-from sturdy.core.ioc.container import IDependenciesContainer
-from sturdy.core.ioc.exceptions import ResolveDependencyException
+from sturdy.deprecated.ioc.container import IDependenciesContainer
+from sturdy.deprecated.ioc.exceptions import ResolveDependencyException
 
 
 class IOCBaseRegisterCommandResolver(IStrategy):

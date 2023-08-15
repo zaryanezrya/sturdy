@@ -1,7 +1,7 @@
 from typing import Any
 
-from sturdy.core.strategy import IStrategy
-from sturdy.core.ioc.container import IDependenciesContainer
+from sturdy.deprecated.strategy import IStrategy
+from sturdy.deprecated.ioc.container import IDependenciesContainer
 
 
 class IOCBaseResolveResolver(IStrategy):

@@ -1,7 +1,7 @@
 import unittest
 
 from sturdy import resolve
-from sturdy.extras.empty_command import EmptyCommand
+from sturdy.deprecated.empty_command import EmptyCommand
 
 
 @unittest.skip("refactoring")
