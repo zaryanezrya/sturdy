@@ -1,6 +1,6 @@
 from typing import Any
 
-from sturdy import ICommand
+from .command import ICommand
 
 
 def default_resolve_strategy(key: str, *args, **kwargs) -> Any:

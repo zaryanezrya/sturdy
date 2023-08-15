@@ -83,7 +83,9 @@ class InitScopeBasedIoCCommand(ICommand):
 
         store["Scopes.Root"] = lambda: ScopeBasedResolveDependencyStrategy.root
         store["Scopes.Storage"] = lambda: {}
-        store["Scopes.New"] = lambda strategy_if_missing=default_strategy_if_missing: Scope(
+        store[
+            "Scopes.New"
+        ] = lambda strategy_if_missing=default_strategy_if_missing: Scope(
             resolve("Scopes.Storage"), strategy_if_missing
         )
         store[
