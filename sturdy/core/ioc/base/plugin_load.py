@@ -1,7 +1,7 @@
 import importlib
 from typing import Any
 
-from sturdy.core.command import ICommand, CommandException
+from sturdy.command import ICommand, CommandException
 from sturdy.core.strategy import IStrategy
 
 

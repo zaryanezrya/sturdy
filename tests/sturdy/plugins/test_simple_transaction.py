@@ -8,8 +8,8 @@ from sturdy import resolve
 
 class TestSimpleTransactionActionFactory(unittest.TestCase):
     def setUp(self) -> None:
-        resolve("Plugin.Load", "sturdy.plugins.empty_command")()
-        resolve("Plugin.Load", "sturdy.plugins.simple_transaction")()
+        resolve("Plugin.Load", "sturdy.extras.empty_command")()
+        resolve("Plugin.Load", "sturdy.extras.simple_transaction")()
         resolve("Plugin.Load", "tests.mocks.plugins.balance_transfer")()
 
     def test_create_action_single_command(self):
@@ -185,8 +185,8 @@ class TestSimpleTransactionActionFactory(unittest.TestCase):
 
 class TestExecuteTransaction(unittest.TestCase):
     def setUp(self) -> None:
-        resolve("Plugin.Load", "sturdy.plugins.empty_command")()
-        resolve("Plugin.Load", "sturdy.plugins.simple_transaction")()
+        resolve("Plugin.Load", "sturdy.extras.empty_command")()
+        resolve("Plugin.Load", "sturdy.extras.simple_transaction")()
         resolve("Plugin.Load", "tests.mocks.plugins.balance_transfer")()
 
     def test_normal(self) -> None:

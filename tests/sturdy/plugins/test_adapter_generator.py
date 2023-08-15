@@ -28,7 +28,7 @@ class IOneValue:
 
 class TestAdapterGenerator(unittest.TestCase):
     def test_adapter_generate_class(self):
-        resolve("Plugin.Load", "sturdy.plugins.adapter_generator")()
+        resolve("Plugin.Load", "sturdy.extras.adapter_generator")()
         u_obj = UObject()
         AdapterClass = resolve("Adapter.GenerateClass", IOneValue)
         adapter_obj: IOneValue = AdapterClass(u_obj)
@@ -38,7 +38,7 @@ class TestAdapterGenerator(unittest.TestCase):
         self.assertEqual(val, adapter_obj.get_value())
 
     def test_adapter_generate(self):
-        resolve("Plugin.Load", "sturdy.plugins.adapter_generator")()
+        resolve("Plugin.Load", "sturdy.extras.adapter_generator")()
         u_obj = UObject()
         adapter_obj: IOneValue = resolve("Adapter.Generate", IOneValue, u_obj)
 

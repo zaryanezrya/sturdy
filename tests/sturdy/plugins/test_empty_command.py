@@ -1,12 +1,12 @@
 import unittest
 
 from sturdy import resolve
-from sturdy.plugins.empty_command import EmptyCommand
+from sturdy.extras.empty_command import EmptyCommand
 
 
 class TestEmptyCommandPlugin(unittest.TestCase):
     def setUp(self) -> None:
-        resolve("Plugin.Load", "sturdy.plugins.empty_command")()
+        resolve("Plugin.Load", "sturdy.extras.empty_command")()
 
     def test_normal(self):
         cmd1 = resolve("EmptyCommand")
