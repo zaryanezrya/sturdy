@@ -21,7 +21,7 @@ class Scope(IScope):
     def __init__(
         self,
         store: Dict[str, Callable],
-        strategy_if_missing=default_strategy_if_missing,
+        strategy_if_missing,
     ) -> None:
         self.store = store
         self.__strategy_if_missing = strategy_if_missing
@@ -73,21 +73,34 @@ class SetScopeInCurrentThreadCommand(ICommand):
         ScopeBasedResolveDependencyStrategy.set_current_scope(self.scope)
 
 
+def scopes_new_strategy(*args, **kwargs):
+    store = resolve("Scopes.Storage")
+    if 0 == len(args):
+        return Scope(store, default_strategy_if_missing)
+
+    if issubclass(type(args[0]), IScope):
+        parent: IScope = args[0]
+        return Scope(
+            store, lambda key, *args, **kwargs: parent.resolve(key, *args, **kwargs)
+        )
+
+    if issubclass(type(args[0]), Callable):
+        return Scope(store, args[0])
+
+    raise Exception("Failed to create scope")
+
+
 class InitScopeBasedIoCCommand(ICommand):
     def __call__(self) -> None:
         if ScopeBasedResolveDependencyStrategy.root:
             return
 
         store = {}
-        scope = Scope(store)
+        scope = Scope(store, default_strategy_if_missing)
 
         store["Scopes.Root"] = lambda: ScopeBasedResolveDependencyStrategy.root
         store["Scopes.Storage"] = lambda: {}
-        store[
-            "Scopes.New"
-        ] = lambda strategy_if_missing=default_strategy_if_missing: Scope(
-            resolve("Scopes.Storage"), strategy_if_missing
-        )
+        store["Scopes.New"] = scopes_new_strategy
         store[
             "Scopes.Current"
         ] = lambda: ScopeBasedResolveDependencyStrategy.get_current_scope()
