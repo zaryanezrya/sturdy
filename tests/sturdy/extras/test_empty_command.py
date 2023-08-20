@@ -1,15 +1,19 @@
 import unittest
 
 from sturdy import resolve
+from sturdy.extras.scope_based_ioc import InitScopeBasedIoCCommand
+from sturdy.plugin import load_plugin_command_factory
+
 from sturdy.extras.empty_command import EmptyCommand
 
 
-@unittest.skip("refactoring")
 class TestEmptyCommandPlugin(unittest.TestCase):
     def setUp(self) -> None:
-        resolve("Plugin.Load", "sturdy.extras.empty_command")()
+        InitScopeBasedIoCCommand()()
+        resolve("IoC.Register", "Plugin.Load", load_plugin_command_factory)()
 
     def test_normal(self):
+        resolve("Plugin.Load", "sturdy.extras.empty_command")()
         cmd1 = resolve("EmptyCommand")
         cmd2 = resolve("EmptyCommand")
         cmd3 = EmptyCommand()
