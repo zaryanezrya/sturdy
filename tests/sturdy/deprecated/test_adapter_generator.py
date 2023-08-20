@@ -3,10 +3,12 @@ from abc import abstractmethod
 from typing import Any, Dict
 
 from sturdy import resolve
-from sturdy.deprecated.iuobject import IUObject
+
+# from sturdy.extras.iuobject import IUObject
 
 
-class UObject(IUObject):
+# class UObject(IUObject):
+class UObject:
     def __init__(self) -> None:
         self.__store: Dict = {}
 
