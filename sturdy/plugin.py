@@ -1,5 +1,7 @@
 import importlib
 
+from sturdy import resolve
+
 from .command import ICommand, CommandException
 
 
@@ -24,3 +26,8 @@ class LoadPluginCommand(ICommand):
             raise CommandException(
                 f"Module {self.__plugin_uri} doesn't contain a LoadPluginCommand"
             )
+
+
+class InitPluginSystemCommand(ICommand):
+    def __call__(self) -> None:
+        resolve("IoC.Register", "Plugin.Load", load_plugin_command_factory)()
