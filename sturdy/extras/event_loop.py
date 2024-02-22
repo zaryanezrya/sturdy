@@ -88,7 +88,9 @@ class LoadPluginCommand(ICommand):
         event_loop_registry: Dict[str, EventLoop] = {}
         queue_registry: Dict[str, IQueue] = {}
         resolve("IoC.Register", "EventLoop.Registry.Get", lambda: event_loop_registry)
-        resolve("IoC.Register", "EventLoop.Queue.Registry.Get", lambda: event_loop_registry)
+        resolve(
+            "IoC.Register", "EventLoop.Queue.Registry.Get", lambda: event_loop_registry
+        )
 
         resolve(
             "IoC.Register",
