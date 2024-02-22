@@ -1,14 +1,13 @@
 import unittest
 
 from sturdy import resolve, CommandException
-from sturdy.extras.scope_based_ioc import InitScopeBasedIoCCommand
-from sturdy.plugin import load_plugin_command_factory
+from sturdy.extras import InitScopeBasedIoCCommand, InitPluginSystemCommand
 
 
 class TestPluginLoad(unittest.TestCase):
     def setUp(self) -> None:
         InitScopeBasedIoCCommand()()
-        resolve("IoC.Register", "Plugin.Load", load_plugin_command_factory)()
+        InitPluginSystemCommand()()
 
     def test_success(self):
         resolve("Plugin.Load", "tests.test_doubles.math_helper")()

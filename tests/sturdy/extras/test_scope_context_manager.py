@@ -1,14 +1,13 @@
 import unittest
 
 from sturdy import resolve
-from sturdy.extras.scope_based_ioc import InitScopeBasedIoCCommand
-from sturdy.plugin import load_plugin_command_factory
+from sturdy.extras import InitScopeBasedIoCCommand, InitPluginSystemCommand
 
 
 class TestScopeContextManager(unittest.TestCase):
     def setUp(self) -> None:
         InitScopeBasedIoCCommand()()
-        resolve("IoC.Register", "Plugin.Load", load_plugin_command_factory)()
+        InitPluginSystemCommand()()
         resolve("Plugin.Load", "sturdy.extras.scope_context_manager")()
 
     def test_run_in_scope(self):

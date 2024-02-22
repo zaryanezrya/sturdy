@@ -1,8 +1,6 @@
 import importlib
 
-from sturdy import resolve
-
-from .command import ICommand, CommandException
+from sturdy import resolve, ICommand, CommandException
 
 
 def load_plugin_command_factory(uri: str) -> ICommand:
