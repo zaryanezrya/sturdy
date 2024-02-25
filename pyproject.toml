@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "sturdy"
+version = "0.2.1"
+description = "Modular app server"
+authors = ["Ivan Sharun <ivan@sha.run>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/zaryanezrya/sturdy"
+keywords = ["Plugin", "IoC", "Inversion of control", "resolve"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+mypy = "^1.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+test = 'scripts:test'

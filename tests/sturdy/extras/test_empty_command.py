@@ -1,14 +1,17 @@
 import unittest
 
 from sturdy import resolve
-from sturdy.plugins.empty_command import EmptyCommand
+from sturdy.extras import InitScopeBasedIoCCommand, InitPluginSystemCommand
+from sturdy.extras.empty_command import EmptyCommand
 
 
 class TestEmptyCommandPlugin(unittest.TestCase):
     def setUp(self) -> None:
-        resolve("Plugin.Load", "sturdy.plugins.empty_command")()
+        InitScopeBasedIoCCommand()()
+        InitPluginSystemCommand()()
 
     def test_normal(self):
+        resolve("Plugin.Load", "sturdy.extras.empty_command")()
         cmd1 = resolve("EmptyCommand")
         cmd2 = resolve("EmptyCommand")
         cmd3 = EmptyCommand()
