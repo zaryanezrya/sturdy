@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sturdy"
-version = "0.1.4"
+version = "0.2.1"
 description = "Modular app server"
 authors = ["Ivan Sharun <ivan@sha.run>"]
 license = "MIT"
