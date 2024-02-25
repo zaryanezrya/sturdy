@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Dict, Any
 from queue import Queue
 
-from sturdy import ICommand
+from sturdy import resolve, ICommand
 
 
 class IProcessable(ABC):
@@ -114,4 +114,33 @@ class SoftStopCommand(ICommand):
 
 class LoadPluginCommand(ICommand):
     def __call__(self) -> None:
-        ...
+        resolve(
+            "IoC.Register",
+            "Processable.Context.CreateDefault",
+            lambda: create_default_context,
+        )()
+        resolve(
+            "IoC.Register", "Processable.Create", lambda context: Processable(context)
+        )()
+
+        resolve(
+            "IoC.Register",
+            "Processor.Create",
+            lambda processable: Processor(processable),
+        )()
+
+        resolve(
+            "IoC.Register",
+            "Processor.Commands.Send",
+            lambda context, cmd: PutCommandInContextCommand(context, cmd),
+        )()
+        resolve(
+            "IoC.Register",
+            "Processor.Commands.HardStop",
+            lambda context: HardStopCommand(context),
+        )()
+        resolve(
+            "IoC.Register",
+            "Processor.Commands.SoftStop",
+            lambda context: SoftStopCommand(context),
+        )()
